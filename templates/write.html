@@ -1,0 +1,22 @@
+<head>
+    <h1>작성페이지</h1>
+</head>
+
+
+<body>
+    <fieldset>
+        <legend>할일목록작성</legend>
+
+        <form action="/write/detail/" method="post">
+            <label for="to_do">할일</label>
+            <input type="text" name="to_do" id="to_do" required>
+            <label for="time">시간</label>
+            <input type="time" name="time" id="time" required>
+            <label for="content">내용</label>
+            <textarea id="content" name="content" required></textarea>
+
+
+            <button type="submit">작성</button>
+        </form>
+    </fieldset>
+</body>

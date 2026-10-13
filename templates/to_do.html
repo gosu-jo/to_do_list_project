@@ -1,0 +1,51 @@
+<head>
+    <h1>스케줄 관리 프로그램</h1>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>할일</th>
+                <th>시간</th>
+                <th>내용</th>
+                <th>삭제</th>
+                <th>수정</th>
+            </tr>
+        </thead>
+
+
+        <tbody>
+            {% for to_do_list in to_do_lists %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ to_do_list["to_do"] }}</td>
+                <td>{{ to_do_list["time"] }}</td>
+                <td>{{ to_do_list["content"] }}</td>
+                <td>
+                    <form action="/delete/{{ loop.index0 }}" method="post">
+                        <button type="submit">삭제</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="/edit/{{ loop.index0 }}" method="post">
+                        <button type="submit">수정</button>
+                    </form>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6">등록된 할일이 없어요.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+
+    <form action="/write/">
+        <button type="submit">할일 목록 작성하기</button>
+    </form>    
+</body>
+
