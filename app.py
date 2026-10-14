@@ -41,10 +41,11 @@ def write():
 @app.route("/write/detail/", methods=['POST'])
 def write_detail():
     to_do_lists = load_json()
-    if not to_do_text:
+    to_do_list = to_do_text()
+    if not to_do_list:
         flash("제목,시간,내용을 빈칸없이 입력해주세요.")
-        return redircet("/write/")
-    to_do,time,content = to_do_text()
+        return redirect("/write/")
+    to_do,time,content = to_do_list
 
     to_do_list = {
         "to_do" : to_do,
@@ -73,7 +74,7 @@ def edit(index):
     if not (to_do_lists and is_vaild_index(to_do_lists,index)):
         flash("등록된 할일이 없습니다.")
         return redirect("/")
-    to_do_list = to_do_lists.pop(index)
+    to_do_list = to_do_lists[index]
     return render_template("edit.html",to_do_list=to_do_list,index=index)
 
 
@@ -86,7 +87,7 @@ def update(index):
     to_do_list=to_do_text()
     if not to_do_list:
         flash("제목,시간,내용을 빈칸없이 전부 입력해주세요.")
-        return render_template("edit.html",to_dolist=to_do_list,index=index)
+        return render_template("edit.html",to_do_list=to_do_list,index=index)
     to_do,time,content = to_do_list
     to_do_list = {
         "to_do" : to_do,
