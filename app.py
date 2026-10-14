@@ -1,7 +1,7 @@
 from flask import Flask,render_template,flash,request,redirect
 import json
 app = Flask(__name__)
-
+app.secret_key = "dev-secret-key"
 FILENAME = "to_do_list.json"
 
 def load_json():
