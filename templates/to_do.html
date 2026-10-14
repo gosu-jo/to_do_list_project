@@ -1,8 +1,17 @@
 <head>
-    <h1>스케줄 관리 프로그램</h1>
+    <title>스케줄 관리 프로그램</title>
 </head>
 
 <body>
+    <h1>스케줄 관리 프로그램</h1>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
     <table>
         <thead>
             <tr>
@@ -33,6 +42,8 @@
                         <button type="submit">수정</button>
                     </form>
                 </td>
+
+
             </tr>
             {% else %}
             <tr>
